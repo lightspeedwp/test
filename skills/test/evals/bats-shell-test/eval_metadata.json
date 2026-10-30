@@ -1,0 +1,5 @@
+{
+  "eval_name": "bats-shell-test",
+  "prompt": "Create BATS shell script tests for our WordPress build and deploy process: (1) Validate node_modules installation, (2) Verify npm build succeeds with 100% coverage, (3) Check theme.json validation, (4) Confirm deployment artifacts are created. Include fixtures, error handling, and integration with npm scripts.",
+  "assertions": []
+}

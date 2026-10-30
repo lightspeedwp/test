@@ -1,0 +1,5 @@
+{
+  "eval_name": "wordpress-block-testing",
+  "prompt": "I'm building a WordPress block (hero section with image and text overlay). Create a comprehensive test strategy covering: (1) Block registration and editor UI, (2) Frontend rendering and responsiveness, (3) WCAG 2.2 AAA accessibility, (4) Attributes and theme.json integration. Provide test cases, Playwright templates, BATS examples, and accessibility checklist.",
+  "assertions": []
+}

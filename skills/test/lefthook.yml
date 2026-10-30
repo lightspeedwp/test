@@ -1,0 +1,38 @@
+# Lefthook Pre-Commit Hook Configuration
+# Automatically runs tests before commits
+
+# Install hooks: lefthook install
+# Check installation: lefthook check-install
+# Run hooks: lefthook run pre-commit
+
+repos:
+  - repo: https://github.com/lightspeedwp/test
+    version: latest
+
+pre-commit:
+  parallel: false
+  commands:
+    jest:
+      glob: "src/**/*.js"
+      exclude: "**/*.test.js"
+      run: npm run test:jest -- --bail --coverage
+      fail_text: "Jest tests failed"
+      
+    bats:
+      glob: "tests/**/*.bats"
+      run: npm run test:bats
+      fail_text: "BATS tests failed"
+      
+    coverage-check:
+      run: npm run coverage:check -- --threshold 100
+      fail_text: "Coverage below 100%"
+      
+    theme-json-validate:
+      glob: "theme.json"
+      run: npm run validate:theme-json
+      fail_text: "theme.json validation failed"
+
+post-commit:
+  commands:
+    coverage-report:
+      run: npm run coverage:report
