@@ -1,422 +1,521 @@
 ---
 name: test
 description: |
-  Comprehensive test execution and validation skill for multiple testing frameworks.
-  Supports PHPUnit, Jest, and Playwright testing with coverage reporting, debugging,
-  and CI integration. Use this whenever you need to run tests, debug test failures,
-  validate test coverage, or set up testing infrastructure. Handles unit tests,
-  integration tests, E2E tests, and accessibility validation.
+  Expert testing and quality assurance skill for comprehensive software validation.
+  Specializes in: PRD evaluation → test case generation → implementation testing.
+  Supports Playwright E2E tests with MCP integration, accessibility auditing (WCAG 2.2 AAA),
+  WordPress block themes/plugins, BATS shell script testing, Figma design validation,
+  and Chrome DevTools integration. Expert in test design, test automation, accessibility
+  compliance, and design-to-code testing workflows. Use when evaluating PRDs, writing
+  test strategies, creating Playwright tests, auditing accessibility, testing WordPress
+  blocks, validating shell scripts, or reviewing design implementations.
 metadata:
   category: quality
   enabled: 'True'
-  tags: testing, validation, qa, phpunit, jest, playwright, ci, coverage
+  tags:
+    - testing
+    - qa
+    - playwright
+    - accessibility
+    - wordpress
+    - shell-scripting
+    - figma
+    - design-testing
+    - prd-evaluation
+    - chrome-devtools
   subskills:
-    - test:phpunit
-    - test:jest
-    - test:playwright
-    - test:coverage
-    - test:debug
+    - test:prd-evaluation
+    - test:playwright-expert
+    - test:accessibility-audit
+    - test:wordpress-blocks
+    - test:bats-shell
+    - test:figma-design-validation
+    - test:chrome-devtools-integration
 ---
 
-# Test Execution & Validation Skill
+# Test & Quality Assurance Expert Skill
 
-Comprehensive testing skill for LightSpeedWP projects supporting multiple frameworks and testing scenarios.
+Comprehensive testing and quality assurance expertise covering PRD evaluation, test case design, Playwright automation, accessibility auditing, WordPress block development, shell script testing, Figma design validation, and Chrome DevTools integration.
 
-## Quick Start
+## Core Capabilities
 
-### Run All Tests
-```bash
-npm run test                    # Jest unit tests
-npm run test:e2e                # Playwright E2E tests
-composer test                   # PHPUnit tests
-```
+### 🎯 PRD Evaluation & Test Strategy
+Transform product requirements into comprehensive test plans.
 
-### Run Tests by Type
-- **Unit Tests**: `npm run test:unit` (Jest)
-- **Integration Tests**: `npm run test:integration` (Jest + PHPUnit)
-- **E2E Tests**: `npm run test:e2e` (Playwright)
-- **Build Tests**: `npm run test:build` (BATS)
-- **Coverage**: `npm run test:coverage` (generates report)
+**Workflow**:
+1. Review and analyze PRD specifications
+2. Ask clarifying questions about requirements
+3. Identify testable scenarios and edge cases
+4. Design test strategy (unit, integration, E2E, accessibility)
+5. Create test case matrix
+6. Define acceptance criteria and success metrics
 
-### Debug Tests
-- **Jest Debug**: `npm run test:unit:watch`
-- **Jest Debug UI**: `npm run test:unit:ui`
-- **Playwright Debug**: `npm run test:e2e:debug`
-- **Playwright UI**: `npm run test:e2e:ui`
-
-## Testing Frameworks
-
-### PHPUnit (Backend/PHP Testing)
-
-**Location**: `tests/` and `*/tests/` directories  
-**Configuration**: `phpunit.xml` or `phpunit.xml.dist`  
-**Run**: `composer test` or `./vendor/bin/phpunit`
-
-#### Test Types
-- **Unit Tests**: Isolated component logic
-- **Integration Tests**: Database and API interactions
-- **Feature Tests**: Full workflow validation
-
-#### Coverage
-```bash
-./vendor/bin/phpunit --coverage-html coverage/
-./vendor/bin/phpunit --coverage-text
-```
-
-#### Debugging
-```bash
-# Verbose output
-./vendor/bin/phpunit -v
-
-# Stop on first failure
-./vendor/bin/phpunit -x
-
-# Run specific test
-./vendor/bin/phpunit tests/Feature/UserTest.php::testCreateUser
-```
-
-**References**:
-- [PHPUnit Docs](https://phpunit.de/)
-- [PHPUnit Best Practices](https://phpunit.de/manual/current/en/writing-tests-for-phpunit.html)
+**Outputs**:
+- Test case specification document
+- Coverage matrix (features vs. test types)
+- Edge cases and failure scenarios
+- Accessibility requirements checklist
+- Performance and load testing requirements
 
 ---
 
-### Jest (JavaScript/TypeScript Testing)
+### 🎭 Playwright E2E Testing Expert
+Advanced Playwright test creation with MCP integration and Chrome DevTools.
 
-**Location**: `src/**/__tests__/`, `*.test.ts`, `*.test.js` files  
-**Configuration**: `jest.config.js` or `package.json` jest config  
-**Run**: `npm run test:unit` or `npm test`
+**Expertise**:
+- Writing maintainable Playwright test suites
+- Multi-browser testing (Chromium, Firefox, WebKit, Mobile)
+- Test data management and fixtures
+- Network mocking and API testing
+- Screenshot and visual regression testing
+- Performance benchmarking
+- Flaky test diagnosis and remediation
+- Playwright MCP integration for intelligent test generation
+- Chrome DevTools MCP for debugging complex scenarios
 
-#### Test Types
-- **Unit Tests**: Component logic and utility functions
-- **Snapshot Tests**: UI component output verification
-- **DOM Tests**: React/component interaction testing
-- **Mock Tests**: Dependency and API mocking
+**Test Types**:
+- User workflow validation
+- Navigation and routing
+- Form submission and validation
+- API integration testing
+- File upload/download
+- Authentication flows
+- Permission-based UI testing
+- Responsive design validation
+- Cross-device testing
 
-#### Coverage
-```bash
-npm run test:coverage
-npm run test:coverage -- --watch
-```
-
-#### Debugging
-```bash
-# Watch mode
-npm run test:unit:watch
-
-# Interactive UI (newest Jest versions)
-npm run test:unit:ui
-
-# Single file
-npm test -- file.test.ts
-
-# Match pattern
-npm test -- --testNamePattern="creates user"
-
-# Verbose
-npm test -- --verbose
-```
-
-**Configuration Reference**:
-- [Jest Docs](https://jestjs.io/)
-- [Jest Configuration](https://jestjs.io/docs/configuration)
-- [Testing Library](https://testing-library.com/)
+**Sub-skill**: `test:playwright-expert`
 
 ---
 
-### Playwright (E2E & Browser Testing)
+### ♿ Accessibility Auditing (WCAG 2.2 AAA Expert)
+Comprehensive accessibility validation and remediation.
 
-**Location**: `e2e/`, `tests/e2e/` directories  
-**Configuration**: `playwright.config.ts`  
-**Run**: `npm run test:e2e`
+**Standard**: WCAG 2.2 Level AAA (per D3 Decision, Ash Shaw 2026-10-25)
 
-#### Test Types
-- **User Workflows**: Full user journeys through the app
-- **Navigation**: Route handling and SPA functionality
-- **Responsive Design**: Mobile, tablet, desktop viewports
-- **Accessibility**: WCAG 2.2 compliance validation
-- **Performance**: Load time and rendering benchmarks
-- **Cross-browser**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
+**Expertise**:
+- Keyboard navigation testing (all interactive elements)
+- Screen reader compatibility (NVDA, JAWS, VoiceOver)
+- Color contrast validation (7:1 normal, 4.5:1 large)
+- Focus management and visible focus indicators
+- Form accessibility (labels, error messages, ARIA)
+- Semantic HTML validation
+- ARIA roles, properties, and states
+- Dynamic content announcements
+- Skip navigation implementation
+- Page structure and heading hierarchy
+- Link and button context
+- Image alt text validation
+- Video captions and transcripts
+- Mobile accessibility
 
-#### Coverage
-- Route coverage: All public routes and fallback behavior
-- Component coverage: Forms, navigation, modals
-- Integration coverage: API interactions and data loading
-- Accessibility coverage: Keyboard, screen reader, color contrast
+**Testing Tools**:
+- Playwright accessibility checks (axe-core)
+- Chrome DevTools Accessibility Inspector
+- Lighthouse audits
+- Manual screen reader testing
+- Color contrast analyzers
+- Focus indicator visibility testing
 
-#### Debugging
+**Output**: Accessibility audit report with:
+- Pass/fail status for each WCAG criterion
+- Severity level (critical, major, minor)
+- Code locations and remediation guidance
+- Test screenshots and evidence
+- Remediation recommendations
+
+**Sub-skill**: `test:accessibility-audit`
+
+---
+
+### 🧱 WordPress Block Theme & Plugin Testing
+Specialized testing for WordPress block-based development.
+
+**Block Theme Testing**:
+- Theme variant testing (light/dark mode, color schemes)
+- Block composition and nesting
+- Template responsiveness
+- Typography and spacing validation
+- Color palette compliance
+- Custom block development testing
+- Block pattern functionality
+- Theme.json configuration validation
+- Fallback behavior
+- Browser compatibility
+
+**Block Plugin Testing**:
+- Block registration and discovery
+- Block attributes and controls
+- Block rendering (frontend & editor)
+- RichText and editable area handling
+- Nested block management
+- Block transforms and migrations
+- Save/load functionality
+- Editor UI functionality
+- Reusable block behavior
+- Block API integration
+- Plugin dependency testing
+
+**Testing Scope**:
+- Editor functionality (block insertion, editing, deletion)
+- Frontend rendering
+- Responsive behavior
+- Accessibility compliance
+- Performance (bundle size, load time)
+- Backward compatibility
+- PHP/JavaScript integration
+- Database storage format
+
+**Sub-skill**: `test:wordpress-blocks`
+
+---
+
+### 🐚 BATS Shell Script Testing
+Bash Automated Testing System expertise for shell script validation.
+
+**BATS Framework**:
+- Unit testing shell scripts
+- Function testing
+- Exit code validation
+- Output verification
+- Mock command testing
+- File system testing
+- Environment variable handling
+- Error scenario testing
+
+**Use Cases**:
+- Build scripts
+- Deployment automation
+- System utilities
+- DevOps tooling
+- Installation scripts
+- Maintenance tasks
+
+**Testing Patterns**:
 ```bash
-# Debug mode with inspector
-npm run test:e2e:debug
+#!/usr/bin/env bats
 
-# Interactive UI (watch, step through)
-npm run test:e2e:ui
+@test "script returns success on valid input" {
+  run ./script.sh valid-input
+  [ "$status" -eq 0 ]
+  [[ "$output" == *"Success"* ]]
+}
 
-# Single file
-npx playwright test e2e/login.spec.ts
-
-# Headed mode (see browser)
-npx playwright test --headed
-
-# Specific browser
-npx playwright test --project=chromium
-
-# Verbose
-npx playwright test --verbose
+@test "script returns error on invalid input" {
+  run ./script.sh invalid-input
+  [ "$status" -ne 0 ]
+  [[ "$output" == *"Error"* ]]
+}
 ```
 
-**References**:
-- [Playwright Docs](https://playwright.dev/)
-- [Playwright Best Practices](https://playwright.dev/docs/best-practices)
-- [Accessibility Testing](https://playwright.dev/docs/accessibility-testing)
+**Sub-skill**: `test:bats-shell`
 
 ---
 
-## Testing Scenarios & Sub-skills
+### 🎨 Figma Design Validation & Testing
+Evaluate design systems and validate design-to-code implementation.
 
-### 1. **test:phpunit** — PHPUnit Test Execution
-Run PHP tests with various configurations and report formats.
+**Figma Integration**:
+- Analyze Figma component library
+- Evaluate design tokens (colors, typography, spacing)
+- Review component variations and states
+- Validate design system consistency
+- Compare design to code implementation
+- Test responsive breakpoints
+- Verify accessibility properties in design
+- Check design-to-code fidelity
 
-**When to use**:
-- Testing backend logic, models, services
-- Database interaction testing
-- API endpoint validation
-- Integration testing
+**Design System Audit**:
+- Component documentation completeness
+- Design token naming consistency
+- Spacing and typography scale validation
+- Color palette WCAG compliance
+- Shadow and elevation systems
+- Border radius consistency
+- Icon sizing and alignment
+- Animation and interaction specifications
 
-**Examples**:
-```bash
-# Run all tests
-composer test
+**Design-to-Code Testing**:
+- Visual regression testing (screenshots)
+- Component prop coverage
+- Responsive design points
+- State handling (hover, active, disabled)
+- Theme switching
+- Dark mode implementation
+- Design token values in code
 
-# Run specific test suite
-./vendor/bin/phpunit tests/Feature/
-
-# Generate coverage
-./vendor/bin/phpunit --coverage-html coverage/
-
-# Stop on first failure
-./vendor/bin/phpunit -x
-```
-
----
-
-### 2. **test:jest** — Jest Unit Test Execution
-Run JavaScript/TypeScript unit and component tests.
-
-**When to use**:
-- Component logic testing
-- Utility function validation
-- Snapshot testing
-- Mock and spy testing
-
-**Examples**:
-```bash
-# Run all unit tests
-npm run test:unit
-
-# Watch mode for development
-npm run test:unit:watch
-
-# Interactive UI
-npm run test:unit:ui
-
-# Coverage report
-npm run test:coverage
-```
+**Sub-skill**: `test:figma-design-validation`
 
 ---
 
-### 3. **test:playwright** — Playwright E2E Test Execution
-Run browser-based end-to-end tests across multiple browsers.
+### 🔧 Chrome DevTools MCP Integration
+Advanced debugging and performance analysis.
 
-**When to use**:
-- Full user workflow validation
-- Navigation and routing tests
-- Responsive design testing
-- Accessibility compliance validation
-- Cross-browser compatibility
-
-**Examples**:
-```bash
-# Run all E2E tests
-npm run test:e2e
-
-# Debug mode
-npm run test:e2e:debug
-
-# Interactive UI mode
-npm run test:e2e:ui
-
-# Specific browser
-npx playwright test --project=firefox
-
-# Single test file
-npx playwright test e2e/checkout.spec.ts
-```
-
----
-
-### 4. **test:coverage** — Coverage Report Generation
-Generate and analyze test coverage across all frameworks.
-
-**When to use**:
-- Pre-release coverage validation
-- Coverage threshold checks
-- Identifying untested code paths
-- Coverage trend analysis
-
-**Output**:
-- HTML coverage reports in `coverage/`
-- Coverage thresholds verification
-- Per-file and per-function metrics
-- Coverage badges for README
-
----
-
-### 5. **test:debug** — Test Debugging & Troubleshooting
-Debug failing tests with detailed output, source maps, and browser inspection.
-
-**When to use**:
-- Test failures need investigation
-- Flaky test diagnosis
-- Mock/spy issues
-- Browser automation issues
-
-**Tools**:
-- Jest watch + verbose
-- Playwright Inspector
+**Integration Points**:
 - Network request inspection
-- DOM breakpoints and inspection
-- Source map debugging
+- Console error tracking
+- Performance profiling
+- Memory leak detection
+- Accessibility tree inspection
+- CSS property validation
+- JavaScript execution tracking
+- Storage inspection
+- Service worker debugging
+
+**Use Cases**:
+- Complex E2E test debugging
+- Performance issue investigation
+- Network error diagnosis
+- Memory optimization
+- Rendering performance
+- API integration debugging
+
+**Sub-skill**: `test:chrome-devtools-integration`
 
 ---
 
-## Accessibility Testing (WCAG 2.2 AAA)
+## Testing Workflow: PRD → Tests
 
-Per D3 decision (Ash Shaw, 2026-10-25), all tests validate WCAG 2.2 AAA compliance.
-
-### Playwright Accessibility Tests
-```bash
-npm run test:e2e -- --project=accessibility
+### Phase 1: PRD Evaluation
+```
+1. Read and understand requirements
+2. Ask clarifying questions:
+   - What are acceptance criteria?
+   - What edge cases matter?
+   - What's the scope (user workflow, component, API)?
+   - Performance requirements?
+   - Accessibility requirements?
+   - Mobile/responsive requirements?
+   - Browser/device support?
+   - Error scenarios?
+3. Identify test scenarios
+4. Define test types needed (unit, integration, E2E, accessibility)
+5. Create test matrix
 ```
 
-### Validation Includes
-- ✅ Keyboard navigation for all interactive elements
-- ✅ Screen reader announcements and ARIA labels
-- ✅ Color contrast: 7:1 normal text, 4.5:1 large text
-- ✅ Form inputs with proper labels and error messages
-- ✅ Focus management during navigation
-- ✅ Page structure with semantic HTML
+### Phase 2: Test Case Design
+```
+1. Write test case specification
+   - Feature: [Feature Name]
+   - Scenario: [User Action]
+   - Given: [Setup]
+   - When: [Action]
+   - Then: [Expected Result]
 
-### Resources
+2. Identify accessibility requirements
+3. Define test data needs
+4. Specify edge cases
+5. List performance criteria
+```
+
+### Phase 3: Implementation
+```
+1. Write Playwright tests
+2. Implement accessibility checks
+3. Add performance monitoring
+4. Verify cross-browser compatibility
+5. Test responsive behavior
+6. Validate against acceptance criteria
+```
+
+### Phase 4: Validation
+```
+1. Run full test suite
+2. Generate coverage report
+3. Audit accessibility compliance
+4. Performance benchmarking
+5. Create test report
+```
+
+---
+
+## Sub-Skills Reference
+
+| Sub-Skill | Purpose | Use When |
+|-----------|---------|----------|
+| `test:prd-evaluation` | Analyze requirements and create test strategy | Evaluating new features or requirements |
+| `test:playwright-expert` | Write advanced Playwright tests | Creating E2E test suites |
+| `test:accessibility-audit` | Audit WCAG 2.2 AAA compliance | Validating accessibility |
+| `test:wordpress-blocks` | Test block themes and plugins | WordPress development |
+| `test:bats-shell` | Test shell scripts with BATS | Testing build/deploy scripts |
+| `test:figma-design-validation` | Validate design system and implementation | Design review and testing |
+| `test:chrome-devtools-integration` | Debug with Chrome DevTools MCP | Complex test debugging |
+
+---
+
+## Starter Prompts
+
+### "Evaluate This PRD and Create Test Cases"
+```
+I have a new feature PRD. Please:
+1. Analyze the requirements
+2. Ask clarifying questions about:
+   - Acceptance criteria
+   - Edge cases
+   - Accessibility needs
+   - Performance requirements
+3. Create a test case matrix
+4. Identify test types needed (unit, E2E, accessibility)
+5. Define test data scenarios
+```
+
+### "Create Playwright Tests for This Feature"
+```
+Create comprehensive Playwright tests for [feature description]:
+1. Write test cases covering happy path and edge cases
+2. Include accessibility validation
+3. Add performance benchmarks
+4. Test responsive behavior
+5. Cover error scenarios
+```
+
+### "Audit Accessibility Compliance"
+```
+Audit this application for WCAG 2.2 AAA compliance:
+1. Test keyboard navigation
+2. Validate screen reader compatibility
+3. Check color contrast
+4. Verify form accessibility
+5. Test focus management
+6. Generate audit report
+```
+
+### "Review Design and Test Implementation"
+```
+Compare this Figma design to the code implementation:
+1. Evaluate design system tokens
+2. Check component implementation fidelity
+3. Test responsive design points
+4. Verify accessibility properties
+5. Validate design-to-code consistency
+```
+
+### "Create BATS Tests for Shell Script"
+```
+Create BATS tests for this shell script:
+1. Test success scenarios
+2. Test error handling
+3. Validate exit codes
+4. Check output formats
+5. Test edge cases
+```
+
+---
+
+## Expert Topics
+
+### Playwright + Chrome DevTools Debugging
+Complex scenarios requiring both Playwright test automation and Chrome DevTools MCP:
+- Network request mocking and inspection
+- Performance profiling during tests
+- Memory leak detection
+- Console error tracking
+- API response validation
+
+### WordPress Block Accessibility
+Ensuring WordPress blocks meet accessibility standards:
+- Block markup semantic correctness
+- ARIA attributes in block templates
+- Color contrast in block UI
+- Keyboard navigation in block editor
+- Block pattern accessibility
+
+### Figma-to-Code Testing
+Validating design system implementation:
+- Component prop mapping to Figma variants
+- Token value verification
+- Responsive breakpoint testing
+- State and interaction coverage
+- Visual regression testing
+
+### Performance Testing
+Validating performance requirements from PRD:
+- Page load time benchmarks
+- Interaction responsiveness
+- Core Web Vitals (LCP, INP, CLS)
+- Bundle size limits
+- Rendering performance
+
+---
+
+## MCP Integrations
+
+### Playwright MCP
+- Intelligent test case generation from requirements
+- Test code generation from user workflows
+- Test result analysis and reporting
+- Flaky test diagnosis
+
+### Chrome DevTools MCP
+- Network inspection and mocking
+- Performance profiling
+- Memory analysis
+- Accessibility tree inspection
+- CSS and DOM debugging
+
+### Figma MCP (Design Plugin)
+- Component library analysis
+- Design token extraction
+- Variant enumeration
+- Design system audit
+- Design-to-code comparison
+
+---
+
+## Testing Standards
+
+### Code Coverage Minimums
+- Statements: 80%
+- Branches: 75%
+- Functions: 80%
+- Lines: 80%
+
+### Accessibility Standards
+- WCAG 2.2 Level AAA compliance
+- Keyboard navigation for all interactive elements
+- Screen reader compatibility
+- Color contrast: 7:1 (normal), 4.5:1 (large)
+- Form labels and error messages
+- Focus management
+
+### Performance Standards
+- Lighthouse score: 90+
+- Page load time: < 3s (LCP)
+- Interaction responsiveness: < 100ms (INP)
+- Layout stability: < 0.1 (CLS)
+
+---
+
+## When to Use This Skill
+
+✅ **Use this skill when**:
+- Evaluating a new product requirement (PRD)
+- Creating comprehensive test strategies
+- Writing Playwright E2E tests
+- Auditing accessibility compliance
+- Testing WordPress block themes or plugins
+- Validating shell script functionality
+- Reviewing Figma designs vs. implementation
+- Debugging complex test failures with Chrome DevTools
+- Validating design-to-code fidelity
+- Creating test cases from requirements
+
+❌ **Don't use this skill for**:
+- Simple quick manual testing
+- Running existing tests (use test runner directly)
+- General code review (use code-review skill)
+- Simple unit test writing (Jest/PHPUnit basic cases)
+
+---
+
+## Resources
+
+- [Playwright Documentation](https://playwright.dev/)
 - [WCAG 2.2 Guidelines](https://www.w3.org/WAI/WCAG22/quickref/)
-- [Playwright Accessibility Testing](https://playwright.dev/docs/accessibility-testing)
-- [Accessibility Checklist](../guidelines/accessibility-checklist.md)
+- [BATS Framework](https://github.com/bats-core/bats-core)
+- [WordPress Block Development](https://developer.wordpress.org/block-editor/)
+- [Chrome DevTools API](https://chromedevtools.github.io/devtools-protocol/)
 
 ---
 
-## Coverage Requirements
-
-### Minimum Coverage Thresholds
-- **Statements**: 80%
-- **Branches**: 75%
-- **Functions**: 80%
-- **Lines**: 80%
-
-### Pre-Release Validation
-```bash
-npm run test:coverage -- --threshold
-```
-
----
-
-## Test Configuration Files
-
-### Jest
-- `jest.config.js` — Jest configuration
-- `jest.setup.js` — Test environment setup
-- `.babelrc` or `babel.config.js` — Transpiler config
-
-### Playwright
-- `playwright.config.ts` — Playwright configuration
-- `playwright.env.ts` — Environment variables
-
-### PHPUnit
-- `phpunit.xml` — PHPUnit configuration
-- `.env.testing` — Test environment variables
-
----
-
-## CI/CD Integration
-
-Tests are automatically run in GitHub Actions on:
-- Pull request creation/update
-- Commit to `develop` or `main`
-- Release branch creation
-
-### Test Result Reports
-- Coverage reports in artifacts
-- Failure details in PR comments
-- Performance benchmarks in build logs
-
----
-
-## When Tests Fail
-
-### Common Issues & Solutions
-
-**Jest Tests Fail**
-1. Check for changed snapshots: `npm test -- -u` (review changes first!)
-2. Clear cache: `npm test -- --clearCache`
-3. Check node version: `node -v` (should match `.nvmrc`)
-4. Run single test: `npm test -- file.test.ts --verbose`
-
-**Playwright Tests Fail**
-1. Check browser versions: `npx playwright install`
-2. Run headed: `npx playwright test --headed` (see what's happening)
-3. Use debug mode: `npx playwright test --debug`
-4. Check network/API mock config
-5. Verify selector/element exists
-
-**PHPUnit Tests Fail**
-1. Check database setup: `php artisan migrate:refresh --seed`
-2. Verify PHP version: `php -v`
-3. Check dependencies: `composer install`
-4. Run single test: `./vendor/bin/phpunit tests/Feature/UserTest.php::testCreate`
-5. Clear test cache/database
-
----
-
-## Related Skills & Resources
-
-- [Build Verification](./SKILL.md#build-verification) — Validate build artifacts
-- [Validation Skill](../validate/SKILL.md) — General validation patterns
-- [Quality Assurance Plugin](https://github.com/lightspeedwp/.github/tree/develop/plugins/lightspeed-quality-assurance)
-- [Playwright Testing Plugin](https://github.com/lightspeedwp/.github/tree/develop/plugins/lightspeed-playwright-testing)
-
----
-
-## Best Practices
-
-1. **Write Tests First** — Test-driven development catches issues early
-2. **Isolate Tests** — Tests should be independent and repeatable
-3. **Mock External Services** — Don't make real API calls in tests
-4. **Clear Test Names** — Describe what is being tested and expected outcome
-5. **Keep Tests Fast** — Optimize database fixtures and network mocks
-6. **Test Edge Cases** — Don't just test the happy path
-7. **Review Coverage** — Aim for high coverage of critical paths
-8. **Automate Testing** — Run tests locally before committing
-
----
-
-## Quick Reference
-
-| Framework | Run All | Watch Mode | Coverage | Debug |
-|-----------|---------|-----------|----------|-------|
-| Jest | `npm test` | `npm run test:watch` | `npm run test:coverage` | `npm run test:ui` |
-| Playwright | `npm run test:e2e` | N/A | Built-in | `npm run test:e2e:debug` |
-| PHPUnit | `composer test` | `./vendor/bin/phpunit -w` | `--coverage-html` | `-v --stop-on-failure` |
-
----
-
-*Test execution skill; verify current commands in package.json, composer.json, and playwright.config before running.*
+*Test & QA Expert Skill v2.0 — Comprehensive testing and quality assurance*
