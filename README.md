@@ -5,7 +5,7 @@ Comprehensive testing and QA automation for WordPress block themes, plugins, and
 ## What's Inside
 
 **48-File Skill Package:**
-- 🎯 **Master Skill** — `SKILL.md` (500+ lines of expert guidance)
+- 🎯 **Master Skill** — `docs/SKILL.md` (500+ lines of expert guidance)
 - 🔧 **8 Specialized Prompts** — Jest debugging, WordPress block testing, coverage analysis, Playwright E2E, BATS shell testing, theme validation, design tokens
 - 📚 **5 Reference Guides** — Comprehensive guides for Jest, Playwright, WordPress standards, Lefthook, and theme utilities
 - 🛠️ **3 Validator Scripts** — Automated tools for coverage analysis, theme validation, and WP-CLI checks
@@ -23,7 +23,7 @@ Comprehensive testing and QA automation for WordPress block themes, plugins, and
 **Using the Skill:**
 1. **Install**: Copy the repository to `~/.claude/skills/test/` or reference it in Claude Code
 2. **Invoke**: Use `/test` in Claude to access WordPress testing expertise
-3. **Reference**: See [CONTINUATION_PROMPT.md](CONTINUATION_PROMPT.md) for session documentation
+3. **Reference**: See [docs/CONTINUATION_PROMPT.md](docs/CONTINUATION_PROMPT.md) for session documentation
 
 **Key Capabilities:**
 - ⚡ **Jest Configuration** — Debug config issues with clear patterns and examples
@@ -39,28 +39,32 @@ Comprehensive testing and QA automation for WordPress block themes, plugins, and
 
 ```
 .
-├── SKILL.md                      # Master skill definition
-├── CONTINUATION_PROMPT.md        # Session documentation
+├── README.md                     # This file
+├── CHANGELOG.md                  # Release notes
+├── CLAUDE.md                     # Claude Code instructions
+├── AGENTS.md                     # Available agents
 ├── lefthook.yml                  # Pre-commit configuration
 ├── prompts/                      # 8 specialized sub-skills
 ├── references/                   # 5 reference guides
 ├── scripts/                      # 3 validator scripts
-├── docs/                         # Documentation guides
 ├── evals/                        # 5 test case definitions
+├── docs/                         # Documentation guides
+│   ├── SKILL.md                  # Master skill definition
+│   ├── CONTINUATION_PROMPT.md    # Session documentation
+│   ├── CONTRIBUTING.md           # Contributing guidelines
+│   ├── TESTING.md                # Testing overview
+│   └── [other docs]/             # Framework guides
 ├── test-skill-workspace/         # Evaluation workspace
 │   └── iteration-1/              # Complete test results
 │       ├── benchmark.json        # Aggregated metrics
 │       └── [5 test domains]/     # Full results per domain
-├── README.md                     # This file
-├── CHANGELOG.md                  # Release notes
-├── CLAUDE.md                     # Claude Code instructions
-└── AGENTS.md                     # Available agents
+└── __tests__/                    # Test directory
 ```
 
 ## Documentation
 
 **For Skill Users:**
-- **[SKILL.md](SKILL.md)** — Complete skill reference and navigation guide
+- **[docs/SKILL.md](docs/SKILL.md)** — Complete skill reference and navigation guide
 - **[prompts/](prompts/)** — Specialized prompts for different testing workflows
 - **[references/](references/)** — Deep-dive reference guides
 - **[docs/](docs/)** — Framework documentation (Jest, Playwright, BATS, PHP, etc.)
@@ -72,7 +76,7 @@ Comprehensive testing and QA automation for WordPress block themes, plugins, and
 
 **Evaluation & Reference:**
 - **[test-skill-workspace/iteration-1/benchmark.json](test-skill-workspace/iteration-1/benchmark.json)** — Full evaluation results and metrics
-- **[CONTINUATION_PROMPT.md](CONTINUATION_PROMPT.md)** — Complete session documentation
+- **[docs/CONTINUATION_PROMPT.md](docs/CONTINUATION_PROMPT.md)** — Complete session documentation
 
 ## Evaluation Results
 
