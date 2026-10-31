@@ -1,0 +1,5 @@
+{
+  "eval_name": "wordpress-block-testing",
+  "prompt": "Create comprehensive testing strategy for a WordPress hero block. Cover block registration, editor UI, frontend rendering, responsive design, accessibility, and theme.json integration across 7 dimensions.",
+  "assertions": []
+}

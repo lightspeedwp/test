@@ -1,0 +1,11 @@
+{
+  "presets": [
+    [
+      "@wordpress/babel-preset-default",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ]
+}

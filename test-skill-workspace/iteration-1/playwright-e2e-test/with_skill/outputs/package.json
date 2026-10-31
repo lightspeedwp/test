@@ -1,0 +1,78 @@
+{
+  "name": "wordpress-block-plugin-e2e-tests",
+  "version": "1.0.0",
+  "description": "Complete Playwright E2E tests for WordPress block plugin release workflow",
+  "author": "LightSpeedWP",
+  "license": "Proprietary",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:ui:debug": "playwright test --ui --debug",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:trace": "playwright show-trace",
+    "test:chromium": "playwright test --project=chromium-desktop",
+    "test:firefox": "playwright test --project=firefox-desktop",
+    "test:webkit": "playwright test --project=webkit-desktop",
+    "test:mobile": "playwright test --project=iphone-12 --project=android-chrome",
+    "test:tablet": "playwright test --project=chromium-tablet",
+    "test:a11y": "playwright test --project=chromium-a11y",
+    "test:visual": "playwright test --project=visual-regression",
+    "test:error": "playwright test --project=error-scenarios",
+    "test:responsive": "playwright test --project=responsive",
+    "test:performance": "playwright test --project=performance",
+    "test:all-browsers": "playwright test --project=chromium-desktop --project=firefox-desktop --project=webkit-desktop",
+    "test:all-devices": "playwright test --project=iphone-12 --project=chromium-tablet --project=android-chrome",
+    "test:full": "playwright test --project=chromium-desktop --project=firefox-desktop --project=webkit-desktop --project=iphone-12 --project=chromium-tablet",
+    "test:main-flow": "playwright test wordpress-block-plugin.spec.ts",
+    "test:error-scenarios": "playwright test error-scenarios.spec.ts",
+    "test:visual-regression": "playwright test visual-regression.spec.ts",
+    "test:watch": "playwright test --ui --headed",
+    "test:codegen": "playwright codegen",
+    "test:record": "playwright test --record-video=retain-on-failure",
+    "test:screenshots": "playwright test --update-snapshots",
+    "test:grep": "playwright test --grep",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "install:browsers": "playwright install --with-deps",
+    "install:deps": "playwright install-deps",
+    "version": "node -p \"require('./package.json').version\"",
+    "ci": "npm run test -- --project=chromium-desktop --project=firefox-desktop --reporter=junit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "playwright",
+    "e2e",
+    "testing",
+    "wordpress",
+    "block-plugin",
+    "automation",
+    "qa",
+    "accessibility",
+    "wcag",
+    "responsive",
+    "visual-regression"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightspeedwp/wordpress-block-plugin-tests"
+  },
+  "bugs": {
+    "url": "https://github.com/lightspeedwp/wordpress-block-plugin-tests/issues"
+  },
+  "homepage": "https://github.com/lightspeedwp/wordpress-block-plugin-tests#readme"
+}

@@ -1,0 +1,357 @@
+name: Build, Test & Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: '18.x'
+  NPM_VERSION: '8.x'
+
+jobs:
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+  test-npm-modules:
+    name: Validate npm Installation
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify Node version
+        run: node --version && npm --version
+
+      - name: Verify node_modules
+        run: |
+          if [[ ! -d "node_modules" ]]; then
+            echo "ERROR: node_modules not installed"
+            exit 1
+          fi
+          echo "✓ node_modules installed successfully"
+
+      - name: Verify package-lock.json
+        run: |
+          if [[ ! -f "package-lock.json" ]]; then
+            echo "ERROR: package-lock.json not found"
+            exit 1
+          fi
+          echo "✓ package-lock.json is present"
+
+  test-jest:
+    name: Jest Tests & Coverage
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest tests
+        run: npm run test:jest
+
+      - name: Verify 100% coverage
+        run: npm run coverage:check -- --threshold=100
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+          flags: jest
+          name: jest-coverage
+
+  test-bats:
+    name: BATS Shell Tests
+    runs-on: ubuntu-latest
+    needs: [test-npm-modules]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Install BATS
+        run: npm install --save-dev bats
+
+      - name: Run BATS tests
+        run: npm run test:bats
+
+      - name: Upload BATS results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: bats-results
+          path: test-results.json
+
+  validate-theme:
+    name: Validate theme.json
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Validate theme.json syntax
+        run: jq empty theme.json
+
+      - name: Validate theme.json schema
+        run: npm run validate:theme
+
+      - name: Check required properties
+        run: |
+          VERSION=$(jq -r '.version' theme.json)
+          if [[ -z "$VERSION" ]]; then
+            echo "ERROR: Missing version property"
+            exit 1
+          fi
+          echo "✓ Theme version: $VERSION"
+
+      - name: Check color palette
+        run: |
+          COLORS=$(jq '.settings.color.palette | length' theme.json)
+          if (( COLORS > 0 )); then
+            echo "✓ Color palette defined with $COLORS colors"
+          fi
+
+      - name: Check typography
+        run: |
+          FONTS=$(jq '.settings.typography.fontSizes | length' theme.json)
+          if (( FONTS > 0 )); then
+            echo "✓ Typography defined with $FONTS font sizes"
+          fi
+
+  build:
+    name: Build & Create Artifacts
+    runs-on: ubuntu-latest
+    needs: [test-jest, test-bats, validate-theme]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run Jest tests
+        run: npm run test:jest
+
+      - name: Verify coverage
+        run: npm run coverage:check -- --threshold=100
+
+      - name: Build artifacts
+        run: npm run build
+
+      - name: Verify build artifacts
+        run: |
+          if [[ ! -d "dist" ]]; then
+            echo "ERROR: dist directory not created"
+            exit 1
+          fi
+
+          if [[ ! -f "dist/index.js" ]]; then
+            echo "ERROR: index.js not found in dist"
+            exit 1
+          fi
+
+          if [[ ! -f "dist/style.css" ]]; then
+            echo "ERROR: style.css not found in dist"
+            exit 1
+          fi
+
+          echo "✓ All build artifacts verified"
+
+      - name: Check artifact sizes
+        run: |
+          echo "Build artifact sizes:"
+          du -sh dist/*
+
+      - name: Create deployment archive
+        run: tar -czf wordpress-theme.tar.gz dist/
+
+      - name: Verify archive integrity
+        run: tar -tzf wordpress-theme.tar.gz > /dev/null && echo "✓ Archive integrity verified"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: dist/
+          retention-days: 30
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: deployment-archive
+          path: wordpress-theme.tar.gz
+          retention-days: 30
+
+  deploy:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: dist/
+
+      - name: Download archive
+        uses: actions/download-artifact@v3
+        with:
+          name: deployment-archive
+
+      - name: Deploy to staging
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+          scp -i ~/.ssh/deploy_key \
+            -r dist/ \
+            "$DEPLOY_HOST:$DEPLOY_PATH/"
+
+          echo "✓ Deployed to staging"
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: deployment-archive
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            wordpress-theme.tar.gz
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    name: Notify Status
+    runs-on: ubuntu-latest
+    needs: [lint, test-jest, test-bats, validate-theme, build]
+    if: always()
+
+    steps:
+      - name: Determine status
+        run: |
+          if [[ "${{ needs.lint.result }}" == "success" ]] && \
+             [[ "${{ needs.test-jest.result }}" == "success" ]] && \
+             [[ "${{ needs.test-bats.result }}" == "success" ]] && \
+             [[ "${{ needs.validate-theme.result }}" == "success" ]] && \
+             [[ "${{ needs.build.result }}" == "success" ]]; then
+            echo "✓ All checks passed!"
+            exit 0
+          else
+            echo "✗ Some checks failed"
+            exit 1
+          fi
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const status = '${{ needs.build.result }}' === 'success' ? '✓ PASS' : '✗ FAIL';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Build Status: ${status}\n\n- Lint: ${{ needs.lint.result }}\n- Jest: ${{ needs.test-jest.result }}\n- BATS: ${{ needs.test-bats.result }}\n- Theme: ${{ needs.validate-theme.result }}\n- Build: ${{ needs.build.result }}`
+            })
