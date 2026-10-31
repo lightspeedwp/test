@@ -116,4 +116,4 @@ Each prompt includes:
 
 ---
 
-See parent skill SKILL.md for overview and when to use each prompt.
+See the [master skill definition](../docs/SKILL.md) for a complete overview and when to use each prompt.

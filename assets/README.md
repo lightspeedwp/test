@@ -41,4 +41,4 @@ import { mockWP } from '../mocks/wp.mock.js';
 
 ---
 
-See JEST.md and PLAYWRIGHT.md for fixture patterns.
+See [JEST.md](../docs/JEST.md) and [PLAYWRIGHT.md](../docs/PLAYWRIGHT.md) for fixture patterns and best practices.

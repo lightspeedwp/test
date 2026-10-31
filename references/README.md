@@ -89,4 +89,4 @@ Comprehensive reference guides for testing tools, WordPress standards, and Light
 
 ---
 
-See SKILL.md for when to consult these references.
+See the [master skill definition](../docs/SKILL.md) for guidance on when to consult these references.

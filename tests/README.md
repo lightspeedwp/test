@@ -55,4 +55,4 @@ bats tests/*.bats --verbose
 
 ---
 
-See LEFTHOOK.md for integrating BATS into pre-commit hooks.
+See [LEFTHOOK.md](../docs/LEFTHOOK.md) for integrating BATS into pre-commit hooks.
