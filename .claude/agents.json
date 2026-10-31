@@ -1,0 +1,161 @@
+{
+  "version": "1.0",
+  "agents": [
+    {
+      "id": "test",
+      "name": "WordPress Testing & QA Expert",
+      "description": "Expert WordPress testing and QA automation for block themes, plugins, and sites",
+      "type": "skill",
+      "path": "./",
+      "main": "docs/SKILL.md",
+      "capabilities": [
+        "jest-configuration",
+        "wordpress-block-testing",
+        "coverage-enforcement",
+        "playwright-e2e-testing",
+        "bats-shell-testing",
+        "wp-cli-validation",
+        "theme-json-validation",
+        "accessibility-auditing",
+        "pre-commit-hooks"
+      ],
+      "tools": [
+        {
+          "name": "jest-config-debug",
+          "description": "Debug Jest configuration issues",
+          "path": "prompts/jest-config-debug.md"
+        },
+        {
+          "name": "wordpress-blocks-testing",
+          "description": "Test WordPress blocks across 7 dimensions",
+          "path": "prompts/wordpress-blocks-testing.md"
+        },
+        {
+          "name": "coverage-enforcement",
+          "description": "Close coverage gaps with 6-layer enforcement",
+          "path": "prompts/coverage-enforcement.md"
+        },
+        {
+          "name": "playwright-wordpress-testing",
+          "description": "End-to-end testing for WordPress workflows",
+          "path": "prompts/playwright-wordpress-testing.md"
+        },
+        {
+          "name": "bats-shell-testing",
+          "description": "Shell script testing with BATS framework",
+          "path": "prompts/bats-shell-testing.md"
+        },
+        {
+          "name": "wp-cli-theme-validation",
+          "description": "WordPress theme validation and compliance",
+          "path": "prompts/wp-cli-theme-validation.md"
+        },
+        {
+          "name": "theme-utils-validation",
+          "description": "Design token and theme.json validation",
+          "path": "prompts/theme-utils-validation.md"
+        },
+        {
+          "name": "coverage-analyzer",
+          "description": "Analyze Jest coverage gaps",
+          "path": "scripts/coverage-analyzer.js"
+        },
+        {
+          "name": "theme-utils-validator",
+          "description": "Validate theme.json and design tokens",
+          "path": "scripts/theme-utils-validator.js"
+        },
+        {
+          "name": "wp-cli-checks",
+          "description": "Run WordPress theme validation checks",
+          "path": "scripts/wp-cli-checks.js"
+        }
+      ]
+    }
+  ],
+  "relatedSkills": [
+    {
+      "name": "wordpress-devkit:gutenberg-block",
+      "description": "Gutenberg block development assistance",
+      "usage": "During block development: use for block-specific help"
+    },
+    {
+      "name": "wordpress-devkit:plugin-scaffold",
+      "description": "WordPress plugin scaffolding",
+      "usage": "When creating plugins: use for plugin setup"
+    },
+    {
+      "name": "wordpress-devkit:theme-init",
+      "description": "WordPress theme initialization",
+      "usage": "When creating themes: use for theme setup"
+    },
+    {
+      "name": "wordpress-devkit:wp-debug",
+      "description": "WordPress debugging assistance",
+      "usage": "During debugging: use for troubleshooting"
+    },
+    {
+      "name": "engineering:testing-strategy",
+      "description": "General testing strategy and best practices",
+      "usage": "For broader testing patterns: reference for general guidance"
+    }
+  ],
+  "workflows": [
+    {
+      "name": "Quick Jest Fix",
+      "description": "Debug and fix Jest configuration issues",
+      "steps": [
+        "Invoke /test 'debug Jest configuration'",
+        "Reference jest-config-debug.md",
+        "Review jest-reference.md for complete patterns",
+        "Apply fixes to jest.config.js",
+        "Run tests to verify"
+      ]
+    },
+    {
+      "name": "Complete WordPress Block Testing",
+      "description": "Test a WordPress block across all 7 dimensions",
+      "steps": [
+        "Invoke /test 'test WordPress block across 7 dimensions'",
+        "Follow wordpress-blocks-testing.md template",
+        "Use playwright-wordpress-testing.md for E2E tests",
+        "Run accessibility audit with ACCESSIBILITY.md",
+        "Validate theme.json integration"
+      ]
+    },
+    {
+      "name": "Achieve 100% Coverage",
+      "description": "Close coverage gaps and enforce 100% coverage",
+      "steps": [
+        "Invoke /test 'close coverage gaps'",
+        "Run coverage-analyzer.js to identify gaps",
+        "Use coverage-enforcement.md to design tests",
+        "Implement tests using prompts and references",
+        "Configure coverage threshold in jest.config.js",
+        "Set up CI/CD coverage gates"
+      ]
+    },
+    {
+      "name": "Setup End-to-End Testing",
+      "description": "Implement Playwright E2E tests for WordPress",
+      "steps": [
+        "Invoke /test 'setup Playwright E2E testing'",
+        "Reference playwright-wordpress-testing.md",
+        "Use playwright-reference.md for patterns",
+        "Review USAGE-GUIDE.md for workflow examples",
+        "Configure CI/CD with Playwright tests"
+      ]
+    },
+    {
+      "name": "Pre-Commit Hook Setup",
+      "description": "Configure Lefthook pre-commit automation",
+      "steps": [
+        "Reference lefthook.yml in repo",
+        "Follow LEFTHOOK.md configuration guide",
+        "Set up jest, bats, and coverage checks",
+        "Test hooks locally",
+        "Validate in CI/CD pipeline"
+      ]
+    }
+  ]
+}

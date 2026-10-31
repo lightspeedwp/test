@@ -1,0 +1,187 @@
+{
+  "projectName": "WordPress Testing & QA Expert Skill",
+  "description": "Comprehensive testing and QA automation for WordPress block themes, plugins, and sites",
+  "version": "1.0.0",
+  "settings": {
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "outputStyle": "structured",
+    "fastMode": false
+  },
+  "permissions": {
+    "allow": [
+      "npm test",
+      "npm run lint",
+      "npm run coverage",
+      "grep",
+      "find",
+      "git status",
+      "git log"
+    ]
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    ".git/",
+    "dist/",
+    "coverage/",
+    ".DS_Store",
+    "*.swp",
+    "test-skill-workspace/",
+    ".pytest_cache/",
+    "__pycache__/"
+  ],
+  "aliases": {
+    "help": "cat ./docs/SKILL.md",
+    "readme": "cat ./README.md",
+    "setup": "cat ./docs/CI-CD-INTEGRATION.md",
+    "testing": "cat ./docs/TESTING.md",
+    "examples": "ls -la ./prompts/",
+    "refs": "ls -la ./references/"
+  },
+  "testing": {
+    "frameworks": [
+      "Jest",
+      "Playwright",
+      "BATS",
+      "PHPUnit"
+    ],
+    "jest": {
+      "description": "JavaScript/TypeScript unit testing",
+      "location": "evals/",
+      "testTimeout": 120000,
+      "coverage": true,
+      "commands": {
+        "test": "jest configuration debugging and test implementation"
+      }
+    },
+    "playwright": {
+      "description": "Browser-based E2E testing for WordPress",
+      "browsers": ["chromium", "firefox", "webkit"],
+      "commands": {
+        "e2e": "End-to-end testing with page objects and visual regression"
+      }
+    },
+    "bats": {
+      "description": "Shell script testing and CI/CD validation",
+      "location": "tests/",
+      "commands": {
+        "shell": "Shell script testing with 59+ test examples"
+      }
+    },
+    "phpunit": {
+      "description": "PHP unit testing for WordPress",
+      "commands": {
+        "php": "PHP testing patterns and WordPress test utilities"
+      }
+    }
+  },
+  "skills": [
+    "test"
+  ],
+  "documentation": {
+    "main": "README.md",
+    "skill": "docs/SKILL.md",
+    "continuation": "docs/CONTINUATION_PROMPT.md",
+    "overview": "docs/TESTING.md",
+    "jest": "docs/JEST.md",
+    "playwright": "docs/PLAYWRIGHT.md",
+    "phpunit": "docs/PHPUNIT.md",
+    "accessibility": "docs/ACCESSIBILITY.md",
+    "theme-json": "docs/THEME-JSON-VALIDATION.md",
+    "lefthook": "docs/LEFTHOOK.md",
+    "usage": "docs/USAGE-GUIDE.md",
+    "training": "docs/TEAM-TRAINING.md",
+    "ci-cd": "docs/CI-CD-INTEGRATION.md",
+    "testing-domains": "docs/TESTING-DOMAINS-EXTENSION.md",
+    "contributing": "docs/CONTRIBUTING.md",
+    "agents": "AGENTS.md",
+    "claude": "CLAUDE.md",
+    "changelog": "CHANGELOG.md",
+    "prompts": "prompts/README.md",
+    "scripts": "scripts/README.md",
+    "references": "references/README.md",
+    "bats": "tests/README.md",
+    "assets": "assets/README.md"
+  },
+  "directories": {
+    "docs": {
+      "description": "Complete documentation and guides",
+      "includes": [
+        "Framework documentation (Jest, Playwright, PHPUnit)",
+        "Testing strategies and best practices",
+        "Accessibility guidelines (WCAG 2.2 AAA)",
+        "Theme validation and design tokens",
+        "CI/CD integration",
+        "Team training materials"
+      ]
+    },
+    "prompts": {
+      "description": "8 specialized sub-skills for testing workflows",
+      "includes": [
+        "Jest configuration debugging",
+        "WordPress block testing (7-dimension matrix)",
+        "Coverage gap analysis and enforcement",
+        "Playwright E2E testing",
+        "BATS shell testing",
+        "WP-CLI theme validation",
+        "Theme-utils design token validation"
+      ]
+    },
+    "references": {
+      "description": "5 deep-dive reference guides",
+      "includes": [
+        "Jest configuration reference",
+        "Playwright testing patterns",
+        "WordPress testing standards",
+        "Lefthook pre-commit setup",
+        "Theme-utils validation utilities"
+      ]
+    },
+    "scripts": {
+      "description": "3 production-ready validator scripts",
+      "includes": [
+        "theme-utils-validator.js - Design token validation",
+        "wp-cli-checks.js - WordPress theme compliance",
+        "coverage-analyzer.js - Jest coverage gap analysis"
+      ]
+    },
+    "evals": {
+      "description": "5 test case definitions with evaluation results",
+      "includes": [
+        "jest-config-debug test case",
+        "wordpress-block-testing test case",
+        "coverage-gap-analysis test case",
+        "playwright-e2e-test test case",
+        "bats-shell-test test case"
+      ]
+    },
+    "test-skill-workspace": {
+      "description": "Skill evaluation workspace with benchmark results",
+      "includes": [
+        "iteration-1 with complete benchmark.json",
+        "Full results for all 5 test domains",
+        "with-skill vs baseline comparisons",
+        "Timing and token metrics"
+      ]
+    }
+  },
+  "keyFeatures": [
+    "13% faster WordPress block testing than baseline",
+    "7-dimension testing matrix for WordPress blocks",
+    "6-layer coverage enforcement strategy",
+    "44+ Playwright E2E test patterns",
+    "59+ BATS shell script tests",
+    "WCAG 2.2 AAA accessibility validation",
+    "theme.json design token validation",
+    "Pre-commit Lefthook automation",
+    "GitHub Actions CI/CD integration"
+  ],
+  "evaluationResults": {
+    "status": "All 5 test domains evaluated successfully",
+    "wordpress_block_testing": "13.2% faster than baseline",
+    "coverage_analysis": "6-layer enforcement strategy with 50+ test cases",
+    "playwright_e2e": "44+ comprehensive test cases",
+    "bats_shell_testing": "59 tests with 40+ helpers",
+    "jest_debugging": "Clear patterns with configuration examples"
+  }
+}
