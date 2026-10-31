@@ -1,8 +1,12 @@
-# Contributing to lightspeedwp/test
+# Contributing to lightspeedwP/test
+
+Welcome! This repository contains the **WordPress Testing & QA Expert Skill** — a comprehensive testing framework for WordPress block themes, plugins, and sites.
 
 ## Overview
 
 This repository follows **LightSpeedWP's organization-wide standards** for branching, labeling, issue types, and PR workflows.
+
+**Before contributing:** Read the [README.md](../README.md) to understand the project structure and what's included.
 
 All canonical configurations are maintained in [`lightspeedwp/.github`](https://github.com/lightspeedwp/.github/tree/develop) as the single source of truth.
 
