@@ -1,5 +1,0 @@
-{
-  "eval_name": "bats-shell-test",
-  "prompt": "Write comprehensive BATS shell tests for WordPress build and deployment automation. Cover npm installation, build validation, theme.json checks, and CI/CD integration.",
-  "assertions": []
-}

@@ -1,5 +1,5 @@
 {
   "eval_name": "coverage-gap-analysis",
-  "prompt": "Jest coverage dropped from 87% to 72% after refactoring our validation utilities. Analyze what's missing: (1) Which files/functions lost coverage? (2) What test cases should we prioritize? (3) Design specific test cases to reach 100% coverage. Show methodology and templates.",
+  "prompt": "Analyze Jest coverage gaps in a WordPress plugin test suite. Identify uncovered functions, edge cases, and design a coverage restoration strategy.",
   "assertions": []
 }

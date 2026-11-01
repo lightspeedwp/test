@@ -1,5 +1,0 @@
-{
-  "eval_name": "coverage-gap-analysis",
-  "prompt": "Analyze Jest coverage gaps in a WordPress plugin test suite. Identify uncovered functions, edge cases, and design a coverage restoration strategy.",
-  "assertions": []
-}

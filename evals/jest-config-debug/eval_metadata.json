@@ -1,5 +1,5 @@
 {
   "eval_name": "jest-config-debug",
-  "prompt": "I'm setting up Jest for a WordPress plugin and getting these errors: (1) testMatch not finding tests, (2) coverage showing 0% even though tests run, (3) module mapping not working for @wordpress/element imports. Help me debug and fix the jest.config.js configuration. Assume we're using wp-scripts with a custom setup.",
+  "prompt": "Debug Jest configuration issues in a WordPress block project. Address coverage gaps, configuration conflicts, and module resolution problems.",
   "assertions": []
 }

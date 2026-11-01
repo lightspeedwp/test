@@ -1,5 +1,0 @@
-{
-  "eval_name": "playwright-e2e-test",
-  "prompt": "Write end-to-end Playwright tests for WordPress block plugin release workflow. Test block creation, publishing, frontend verification, responsive design, and WCAG 2.2 AAA accessibility compliance.",
-  "assertions": []
-}
