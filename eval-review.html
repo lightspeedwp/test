@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigger Evaluation Review - WordPress Testing Skill</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .skill-name {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .description-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #555;
+            border-radius: 4px;
+        }
+
+        .instructions {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .query-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #e0e0e0;
+        }
+
+        .query-card.should-trigger {
+            border-left-color: #27ae60;
+        }
+
+        .query-card.should-not-trigger {
+            border-left-color: #e74c3c;
+        }
+
+        .query-card.edited {
+            background: #fffbea;
+        }
+
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .query-index {
+            font-size: 12px;
+            color: #95a5a6;
+            font-weight: 600;
+        }
+
+        .trigger-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .trigger-badge.should-trigger {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .trigger-badge.should-not-trigger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .trigger-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .query-text {
+            font-size: 14px;
+            color: #2c3e50;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background: #229954;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .stats {
+            background: #ecf0f1;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .add-query-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px dashed #3498db;
+        }
+
+        .add-query-section h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            min-height: 60px;
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .footer {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 13px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="skill-name">WordPress Testing & QA Expert Skill</div>
+            <h1>Trigger Evaluation Review</h1>
+            <div class="description-box">
+                <strong>Current Description:</strong> Expert WordPress testing and QA automation: Debug Jest configuration issues, test WordPress blocks across 7 dimensions (registration, editor, frontend, responsive, accessibility, attributes, theme.json), enforce 100% coverage, create Playwright E2E tests, write BATS shell scripts, validate theme.json compliance, audit WCAG 2.2 AAA accessibility...
+            </div>
+        </header>
+
+        <div class="instructions">
+            <h3>How to use this review tool:</h3>
+            <ul>
+                <li><strong>Review each query</strong> — Does it accurately represent a real user request?</li>
+                <li><strong>Toggle the category</strong> — Should this trigger the skill or not?</li>
+                <li><strong>Edit queries</strong> — Make them more realistic if needed (add context, typos, details)</li>
+                <li><strong>Delete queries</strong> — Remove anything that doesn't fit</li>
+                <li><strong>Add new queries</strong> — Use the form below if you want more test cases</li>
+                <li><strong>Export</strong> — When ready, click "Export Eval Set" to download the final JSON</li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <div class="stats">
+                <strong id="stats-text">20 queries total:</strong> <span id="should-trigger-count">10</span> should-trigger, <span id="should-not-trigger-count">10</span> should-not-trigger
+            </div>
+            <button class="btn btn-primary" onclick="exportEvalSet()">📥 Export Eval Set</button>
+            <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset All</button>
+        </div>
+
+        <div id="queries-container"></div>
+
+        <div class="add-query-section">
+            <h3>Add a New Query</h3>
+            <div class="form-group">
+                <label>Query text:</label>
+                <textarea id="new-query-text" placeholder="Enter the user query..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Should this trigger the skill?</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="new-query-trigger" value="true" checked>
+                        Should Trigger
+                    </label>
+                    <label>
+                        <input type="radio" name="new-query-trigger" value="false">
+                        Should Not Trigger
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="addNewQuery()">➕ Add Query</button>
+        </div>
+
+        <div class="footer">
+            <p>When you're done editing, click "Export Eval Set" to download the final query set as JSON.<br>
+            The evaluation loop will use these queries to optimize the skill's description for better triggering.</p>
+        </div>
+    </div>
+
+    <script>
+        const evalData = [
+  {
+    "query": "I've been working on a WordPress block for our theme and my Jest tests keep failing with 'Cannot find module @wordpress/blocks'. I've got testMatch and moduleNameMapper set up but something's not working. Can you help me debug the Jest configuration?",
+    "should_trigger": true
+  },
+  {
+    "query": "We're building a custom Gutenberg block and need to test it across registration, editor rendering, frontend output, responsive behavior, and accessibility. Where do I even start with comprehensive testing?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our test coverage just dropped to 87% and we need to get back to 100%. I have a list of files that aren't fully covered but I'm not sure which tests to write first to get the most impact. How do I approach closing these gaps?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to write end-to-end tests for WordPress workflows like block editing, publishing posts, and checking them on the frontend. We're thinking Playwright but I'm not sure how to structure the tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "We want to validate our theme's shell scripts (build scripts, deploy automation, etc) to make sure they work correctly. What's the best way to test shell scripts in our CI pipeline?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our WordPress theme needs to meet WCAG 2.2 AAA accessibility standards. What criteria should we be testing for and how do we audit a block theme for compliance?",
+    "should_trigger": true
+  },
+  {
+    "query": "We're using theme.json for our design tokens (colors, typography, spacing). How do we validate that the theme.json is structured correctly and all design tokens are consistent?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to set up pre-commit hooks that automatically run our tests before commits go through. We use Lefthook and want jest, coverage checks, and shell script validation all to run automatically.",
+    "should_trigger": true
+  },
+  {
+    "query": "We're releasing a new WordPress block theme and need to validate it against WordPress.org standards and our internal LightSpeedWP guidelines. What should we check?",
+    "should_trigger": true
+  },
+  {
+    "query": "My team is struggling with test strategy. We have Jest tests, some Playwright E2E tests, and shell script tests, but we don't have a cohesive approach. How do we organize testing across all these frameworks?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to set up a new JavaScript project from scratch. What's the best way to scaffold a new project with all the build tools and dependencies?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I build a REST API endpoint in Node.js that can handle file uploads and validate JSON payloads?",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm writing Python unit tests for my data pipeline. What's the best way to mock external API calls?",
+    "should_trigger": false
+  },
+  {
+    "query": "We need to deploy a WordPress site to production. What's the deployment checklist and how do we handle database migrations?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I debug a slow React component? It's rendering too many times and killing performance.",
+    "should_trigger": false
+  },
+  {
+    "query": "We're setting up continuous integration for a React app. Should I use GitHub Actions or GitLab CI?",
+    "should_trigger": false
+  },
+  {
+    "query": "We have a PHP WordPress plugin that's throwing notices and warnings. How do I enable debugging and find the source of the issues?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I write integration tests for my Rails application that test the full request/response cycle?",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to optimize my site's Core Web Vitals scores. The LCP is too high and CLS is unstable. Where should I start?",
+    "should_trigger": false
+  },
+  {
+    "query": "We're using TypeScript in our WordPress block development but we're not sure how to configure Jest to work properly with TypeScript files and @wordpress modules.",
+    "should_trigger": true
+  }
+];
+
+        let currentData = JSON.parse(JSON.stringify(evalData));
+
+        function renderQueries() {
+            const container = document.getElementById('queries-container');
+            container.innerHTML = '';
+
+            currentData.forEach((item, index) => {
+                const card = document.createElement('div');
+                const triggerClass = item.should_trigger ? 'should-trigger' : 'should-not-trigger';
+                const triggerLabel = item.should_trigger ? 'Should Trigger' : 'Should Not Trigger';
+
+                card.className = `query-card ${triggerClass}`;
+                card.innerHTML = `
+                    <div class="query-header">
+                        <div class="query-index">Query ${index + 1}</div>
+                        <button class="trigger-badge ${triggerClass}" onclick="toggleTrigger(${index})">
+                            ${triggerLabel}
+                        </button>
+                    </div>
+                    <textarea class="query-text" onchange="updateQuery(${index}, this.value)">${item.query}</textarea>
+                    <div class="card-actions">
+                        <button class="btn btn-delete" onclick="deleteQuery(${index})">🗑️ Delete</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateStats();
+        }
+
+        function toggleTrigger(index) {
+            currentData[index].should_trigger = !currentData[index].should_trigger;
+            renderQueries();
+        }
+
+        function updateQuery(index, value) {
+            currentData[index].query = value;
+            updateStats();
+        }
+
+        function deleteQuery(index) {
+            currentData.splice(index, 1);
+            renderQueries();
+        }
+
+        function addNewQuery() {
+            const text = document.getElementById('new-query-text').value.trim();
+            const trigger = document.querySelector('input[name="new-query-trigger"]:checked').value === 'true';
+
+            if (!text) {
+                alert('Please enter a query');
+                return;
+            }
+
+            currentData.push({ query: text, should_trigger: trigger });
+            document.getElementById('new-query-text').value = '';
+            renderQueries();
+        }
+
+        function updateStats() {
+            const shouldTrigger = currentData.filter(q => q.should_trigger).length;
+            const shouldNotTrigger = currentData.filter(q => !q.should_trigger).length;
+
+            document.getElementById('stats-text').textContent = `${currentData.length} queries total:`;
+            document.getElementById('should-trigger-count').textContent = shouldTrigger;
+            document.getElementById('should-not-trigger-count').textContent = shouldNotTrigger;
+        }
+
+        function resetAll() {
+            if (confirm('Reset all changes?')) {
+                currentData = JSON.parse(JSON.stringify(evalData));
+                renderQueries();
+            }
+        }
+
+        function exportEvalSet() {
+            const json = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'eval_set.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Initial render
+        renderQueries();
+    </script>
+</body>
+</html>

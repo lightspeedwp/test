@@ -1,0 +1,50 @@
+{
+  "name": "ls-wp-test",
+  "version": "1.0.0",
+  "description": "WordPress Testing & QA Expert Skill - comprehensive testing and QA automation for WordPress block themes, plugins, and sites",
+  "main": "docs/SKILL.md",
+  "scripts": {
+    "test": "npm run validate:skill && npm run validate:references && npm run validate:prompts",
+    "test:watch": "npm test -- --watch",
+    "lint": "npm run lint:json && npm run lint:markdown && npm run lint:yaml",
+    "lint:json": "node scripts/validate-json.js",
+    "lint:markdown": "markdownlint '**/*.md' --ignore node_modules --ignore test-skill-workspace",
+    "lint:yaml": "node scripts/validate-yaml.js",
+    "validate:skill": "node scripts/validate-skill.js",
+    "validate:references": "node scripts/validate-references.js",
+    "validate:prompts": "node scripts/validate-prompts.js",
+    "validate:theme-json": "node scripts/theme-utils-validator.js",
+    "validate:wp-cli": "node scripts/wp-cli-checks.js",
+    "coverage:analyze": "node scripts/coverage-analyzer.js",
+    "quality:check": "npm run lint && npm run test",
+    "verify": "npm run quality:check && npm run validate:theme-json"
+  },
+  "keywords": [
+    "wordpress",
+    "testing",
+    "qa",
+    "jest",
+    "playwright",
+    "bats",
+    "accessibility",
+    "wcag",
+    "skill",
+    "claude"
+  ],
+  "author": "LightSpeedWP",
+  "license": "MIT",
+  "devDependencies": {
+    "markdownlint-cli": "^0.37.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightspeedwp/ls-wp-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lightspeedwp/ls-wp-test/issues"
+  },
+  "homepage": "https://github.com/lightspeedwp/ls-wp-test#readme"
+}

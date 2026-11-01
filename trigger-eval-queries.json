@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I've been working on a WordPress block for our theme and my Jest tests keep failing with 'Cannot find module @wordpress/blocks'. I've got testMatch and moduleNameMapper set up but something's not working. Can you help me debug the Jest configuration?",
+    "should_trigger": true
+  },
+  {
+    "query": "We're building a custom Gutenberg block and need to test it across registration, editor rendering, frontend output, responsive behavior, and accessibility. Where do I even start with comprehensive testing?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our test coverage just dropped to 87% and we need to get back to 100%. I have a list of files that aren't fully covered but I'm not sure which tests to write first to get the most impact. How do I approach closing these gaps?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to write end-to-end tests for WordPress workflows like block editing, publishing posts, and checking them on the frontend. We're thinking Playwright but I'm not sure how to structure the tests.",
+    "should_trigger": true
+  },
+  {
+    "query": "We want to validate our theme's shell scripts (build scripts, deploy automation, etc) to make sure they work correctly. What's the best way to test shell scripts in our CI pipeline?",
+    "should_trigger": true
+  },
+  {
+    "query": "Our WordPress theme needs to meet WCAG 2.2 AAA accessibility standards. What criteria should we be testing for and how do we audit a block theme for compliance?",
+    "should_trigger": true
+  },
+  {
+    "query": "We're using theme.json for our design tokens (colors, typography, spacing). How do we validate that the theme.json is structured correctly and all design tokens are consistent?",
+    "should_trigger": true
+  },
+  {
+    "query": "I want to set up pre-commit hooks that automatically run our tests before commits go through. We use Lefthook and want jest, coverage checks, and shell script validation all to run automatically.",
+    "should_trigger": true
+  },
+  {
+    "query": "We're releasing a new WordPress block theme and need to validate it against WordPress.org standards and our internal LightSpeedWP guidelines. What should we check?",
+    "should_trigger": true
+  },
+  {
+    "query": "My team is struggling with test strategy. We have Jest tests, some Playwright E2E tests, and shell script tests, but we don't have a cohesive approach. How do we organize testing across all these frameworks?",
+    "should_trigger": true
+  },
+  {
+    "query": "I need to set up a new JavaScript project from scratch. What's the best way to scaffold a new project with all the build tools and dependencies?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I build a REST API endpoint in Node.js that can handle file uploads and validate JSON payloads?",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm writing Python unit tests for my data pipeline. What's the best way to mock external API calls?",
+    "should_trigger": false
+  },
+  {
+    "query": "We need to deploy a WordPress site to production. What's the deployment checklist and how do we handle database migrations?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I debug a slow React component? It's rendering too many times and killing performance.",
+    "should_trigger": false
+  },
+  {
+    "query": "I'm trying to set up continuous integration for a React app. Should I use GitHub Actions or GitLab CI?",
+    "should_trigger": false
+  },
+  {
+    "query": "We have a PHP WordPress plugin that's throwing notices and warnings. How do I enable debugging and find the source of the issues?",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I write integration tests for my Rails application that test the full request/response cycle?",
+    "should_trigger": false
+  },
+  {
+    "query": "I need to optimize my site's Core Web Vitals scores. The LCP is too high and CLS is unstable. Where should I start?",
+    "should_trigger": false
+  },
+  {
+    "query": "We're using TypeScript in our WordPress block development but we're not sure how to configure Jest to work properly with TypeScript files and @wordpress modules.",
+    "should_trigger": true
+  }
+]
